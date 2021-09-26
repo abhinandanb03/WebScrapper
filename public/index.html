@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+    <head>
+        <title>WebScrapper</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body style="font-family: 'Yaldevi', sans-serif;">
+        <div class = "container">
+            <h1 style="padding: 30px ;text-align: center; font-size: 40px; font-weight: bold">WebScrapper</h1>
+            <div class="row" style="padding: 30px">
+                <div class="col">
+                    <div class="field">
+                        <label class="label">Scrape idioms by term</label>
+                        <div class="control" style="justify-content: center">
+                            <input class="input is-info" type="text" placeholder="Enter a word" id="scrapeTerm">
+                        </div>
+                        <p>Enter a word and, we'll search scrape an idiom dictionary that contains it</p>
+                    </div>
+                    <button id="scrapeButton" type="submit" class="button is-info is-light is-rounded">Scrape</button>
+                </div>
+            </div>
+            <div class="row" style="padding: 30px 30px">
+                <div class="col">
+                    <div class="field" style="justify-content: center">
+                        <label class="label">Search scraped idioms stored in the database</label>
+                        <div class="control">
+                            <input class="input is-info" type="text" placeholder="Enter a word" id="searchTerm">
+                        </div>
+                        <p>Fetching the searched term from our database</p>
+                    </div>
+                    <div class="btns">
+                        <ul>
+                            <li><button id="searchButton" type="submit" class="button is-info is-light is-rounded">Search</button></li>
+                            <li><button id="getAllButton" type="submit" class="button is-info is-light is-rounded">Fetch all idioms</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card-content">
+                        <h3 class="content">Results:</h3>
+                        <div class="content" id="tableDiv">
+                            Insert Content here
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-content">
+                        <div class="content" id="log">
+                            Logs go here.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>

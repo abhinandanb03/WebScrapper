@@ -1,0 +1,18 @@
+*{
+    font-family: 'Yaldevi', sans-serif;
+}
+body{
+    background-color: #ffffff;
+}
+span{
+    font-size: small;
+}
+ul{
+    overflow:hidden;
+}
+li{
+    display:inline-block;
+}
+.content{
+    justify-content: center;
+}
