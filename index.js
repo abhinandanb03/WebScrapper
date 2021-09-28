@@ -6,14 +6,12 @@ let http = require('http');
 
 var axios = require('axios');
 var cheerio = require('cheerio');
-var mongoose = require("mongoose"); // Require Mongoose to store idioms in database
+var mongoose = require("mongoose");
 
-var Idiom = require("./models/idioms.js");//Requiring the `Idioms` model for accessing the `idioms` collection
+var Idiom = require("./models/idioms.js");
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/idioms_db";
 mongoose.connect(MONGODB_URI);
 
-// Configure middleware
-// Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -22,7 +20,39 @@ app.use(express.static("public"));
 
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname + "./public/index.html"));
+    
 })
+app.get("/idioms", function(req, res) {
+    // Find all Idioms
+    Idiom.find({})
+      .then(function(savedIdioms) {
+        // If all Idioms are successfully found, send them back to the client
+        res.json(savedIdioms);
+      })
+      .catch(function(err) {
+        // If an error occurs, send the error back to the client
+        res.json(err);
+      });
+  });
+  app.get("/idioms/drop", function(req, res) {
+
+    Idiom.deleteMany({})
+    .then(function(res) {
+        res.json(res)
+    })
+    .catch(function(err) {
+        res.json(err)
+    })
+});
+  app.get("/idioms/search/:searchTerm", function(req, res) {
+    Idiom.find({ "idiom": { "$regex": req.params.searchTerm, "$options": "i" } })
+      .then(function(foundIdioms) {
+          res.json(foundIdioms);
+      })
+      .catch(function(err) {
+          res.json(err);
+      });
+  });
 
 var scrape = function(searchTerm) {
     var idioms = [];
@@ -68,8 +98,6 @@ scrape(req.params.searchTerm)
 });
 
 });
-
-
   
 app.listen(PORT, function() {
     console.log("App listening on port " + PORT);
