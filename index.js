@@ -22,7 +22,39 @@ app.use(express.static("public"));
 
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname + "./public/index.html"));
+    
 })
+app.get("/idioms", function(req, res) {
+    // Find all Idioms
+    Idiom.find({})
+      .then(function(savedIdioms) {
+        // If all Idioms are successfully found, send them back to the client
+        res.json(savedIdioms);
+      })
+      .catch(function(err) {
+        // If an error occurs, send the error back to the client
+        res.json(err);
+      });
+  });
+  app.get("/idioms/drop", function(req, res) {
+
+    Idiom.deleteMany({})
+    .then(function(res) {
+        res.json(res)
+    })
+    .catch(function(err) {
+        res.json(err)
+    })
+});
+  app.get("/idioms/search/:searchTerm", function(req, res) {
+    Idiom.find({ "idiom": { "$regex": req.params.searchTerm, "$options": "i" } })
+      .then(function(foundIdioms) {
+          res.json(foundIdioms);
+      })
+      .catch(function(err) {
+          res.json(err);
+      });
+  });
 
 var scrape = function(searchTerm) {
     var idioms = [];
