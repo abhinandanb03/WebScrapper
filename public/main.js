@@ -112,7 +112,6 @@ $(document).ready(function () {
 
 
 
-    /* Event Listeners */
     $scrapeButton.on("click", handleScrapeSubmit);
     $searchButton.on("click", handleSearchSubmit);
     $getAllButton.on("click", handleGetAll);
