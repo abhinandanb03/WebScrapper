@@ -42,7 +42,7 @@ var scrape = function(searchTerm) {
     });
      console.log(idioms);
   }
-
+app.post('/idioms/scrape/:searchTerm', function(req, res) {
 scrape(req.params.searchTerm)
 .then(function(foundIdioms) {
     console.log("scraped:");
@@ -67,7 +67,7 @@ scrape(req.params.searchTerm)
     res.json(err);
 });
 
-
+});
 
 
   
